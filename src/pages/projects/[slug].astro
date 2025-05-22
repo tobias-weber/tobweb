@@ -1,0 +1,29 @@
+---
+import MarkdownProjectLayout from "../../layouts/MarkdownProjectLayout.astro";
+import {getCollection} from 'astro:content';
+import type {CollectionEntry} from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+import Prose from "../../components/Prose.astro";
+
+interface Props {
+    project: CollectionEntry<'projects'>;
+}
+
+export async function getStaticPaths() {
+    const projects = await getCollection('projects');
+    return projects.map((project) => ({
+        params: {slug: project.slug},
+        props: {project},
+    }));
+}
+
+const {project} = Astro.props;
+const {Content} = await project.render();
+---
+
+<Layout>
+    {project.data.pubDate}
+    <Prose>
+        <Content/>
+    </Prose>
+</Layout>

@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import { getCollection } from 'astro:content';
+const allProjects = await getCollection('projects');
+---
+
+<Layout title="TobWeb - Projects">
+	<h1 class="text-6xl font-bold mb-5">Projects</h1>
+
+	<p class="text-base mb-3">This is where I showcase all my projects.</p>
+
+	<ul class="list-disc">
+		{allProjects.map((project) =>
+			<li class="list-item">
+				<a href={'/projects/' +project.slug}>{project.data.title}</a>
+			</li>
+		)}
+	</ul>
+</Layout>
