@@ -1,7 +1,7 @@
 ---
 
-import ThemeIcon from "./ThemeIcon.astro";
 import HeaderLink from "./HeaderLink.astro";
+import ThemeController from "./ThemeController.astro";
 ---
 
 <header class="sticky top-0 z-50 bg-white shadow dark:bg-stone-950">
@@ -12,6 +12,6 @@ import HeaderLink from "./HeaderLink.astro";
             <HeaderLink href="/projects" class="hover:underline">Projects</HeaderLink>
             <HeaderLink href="/about" class="hover:underline">About</HeaderLink>
         </nav>
-        <ThemeIcon/>
+        <ThemeController/>
     </div>
 </header>
