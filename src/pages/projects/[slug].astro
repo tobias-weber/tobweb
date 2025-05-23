@@ -1,9 +1,9 @@
 ---
-import MarkdownProjectLayout from "../../layouts/MarkdownProjectLayout.astro";
 import {getCollection} from 'astro:content';
 import type {CollectionEntry} from 'astro:content';
 import Layout from "../../layouts/Layout.astro";
 import Prose from "../../components/Prose.astro";
+import FormattedDate from "../../components/FormattedDate.astro";
 
 interface Props {
     project: CollectionEntry<'projects'>;
@@ -22,7 +22,7 @@ const {Content} = await project.render();
 ---
 
 <Layout>
-    {project.data.pubDate}
+    <FormattedDate date={project.data.pubDate} />
     <Prose>
         <Content/>
     </Prose>

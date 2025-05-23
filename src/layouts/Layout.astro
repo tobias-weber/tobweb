@@ -1,39 +1,29 @@
 ---
 import "../styles/global.css";
-import ThemeIcon from "../components/ThemeIcon.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 // Props passed to this layout
-const { title = "My Portfolio" } = Astro.props;
+const {title = "TobWeb"} = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en" class="bg-gray-50 text-gray-900">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-	<meta name="description" content="The portfolio website of Tobias Weber." />
-	<meta name="author" content="Tobias Weber">
-	<title>{title}</title>
-</head>
-<body class="min-h-screen flex flex-col font-sans bg-stone-300 dark:bg-stone-800" >
-<header class="bg-white shadow dark:bg-stone-950">
-	<div class="container mx-auto px-4 py-4 flex justify-between items-center">
-		<h1 class="text-3xl font-bold text-indigo-600 font-mono">TobWeb_</h1>
-		<nav class="space-x-4 text-sm text-gray-700 dark:text-white">
-			<a href="/" class="hover:underline">Home</a>
-			<a href="/projects" class="hover:underline">Projects</a>
-			<a href="/about" class="hover:underline">About</a>
-		</nav>
-		<ThemeIcon />
-	</div>
-</header>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+        <meta name="description" content="The portfolio website of Tobias Weber."/>
+        <meta name="author" content="Tobias Weber">
+        <title>{title}</title>
+    </head>
 
-<main class="flex-grow container mx-auto px-4 py-8 dark:text-white dark:bg-stone-800">
-	<slot />
-</main>
+    <body class="min-h-screen flex flex-col font-sans bg-stone-300 dark:bg-stone-800">
+        <Header/>
 
-<footer class="bg-stone-500 text-center py-6 text-sm text-gray-100 dark:bg-stone-900">
-	&copy; {new Date().getFullYear()} Tobias Weber. All rights reserved.
-</footer>
-</body>
+        <main class="flex-grow container mx-auto px-4 py-8 dark:text-white dark:bg-stone-800">
+            <slot/>
+        </main>
+
+        <Footer/>
+    </body>
 </html>

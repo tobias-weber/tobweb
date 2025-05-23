@@ -1,0 +1,17 @@
+---
+
+import ThemeIcon from "./ThemeIcon.astro";
+import HeaderLink from "./HeaderLink.astro";
+---
+
+<header class="sticky top-0 z-50 bg-white shadow dark:bg-stone-950">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="/" class="text-4xl font-bold text-indigo-600 font-mono">tobweb_</a>
+        <nav class="space-x-4 text-sm text-gray-700 dark:text-white">
+            <HeaderLink href="/" class="hover:underline">Home</HeaderLink>
+            <HeaderLink href="/projects" class="hover:underline">Projects</HeaderLink>
+            <HeaderLink href="/about" class="hover:underline">About</HeaderLink>
+        </nav>
+        <ThemeIcon/>
+    </div>
+</header>
