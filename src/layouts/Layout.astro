@@ -1,13 +1,13 @@
 ---
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
+import DrawerHeader from "../components/DrawerHeader.astro";
 // Props passed to this layout
 const {title = "TobWeb"} = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en" class="bg-gray-50 text-gray-900 dark:text-gray-400">
+<html lang="en">
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -17,13 +17,13 @@ const {title = "TobWeb"} = Astro.props;
         <title>{title}</title>
     </head>
 
-    <body class="min-h-screen flex flex-col font-sans bg-stone-300 dark:bg-stone-800">
-        <Header/>
+    <body class="min-h-screen flex flex-col font-sans bg-stone-300 dark:bg-stone-800 dark:text-white">
 
-        <main class="flex-grow container mx-auto px-4 py-8 dark:text-white dark:bg-stone-800">
-            <slot/>
-        </main>
-
-        <Footer/>
+        <DrawerHeader>
+            <main class="flex-grow container mx-auto px-4 pt-16 pb-8 max-w-screen-md">
+                <slot/>
+            </main>
+            <Footer/>
+        </DrawerHeader>
     </body>
 </html>

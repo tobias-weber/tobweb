@@ -1,39 +1,39 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import profileImage from '../assets/sample_profile_img.png'
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<h1 class="text-6xl font-extrabold mb-5">Home</h1>
 
-	<div class="chat chat-start">
-		<div class="chat-bubble chat-bubble-primary">What kind of nonsense is this</div>
-	</div>
-	<div class="chat chat-start">
-		<div class="chat-bubble chat-bubble-secondary">
-			Put me on the Council and not make me a Master!??
+	<div class="hero mb-16">
+		<div class="hero-content flex-col md:flex-row">
+            <a href="/about">
+                <Image src={profileImage} alt="Image of the author"
+                       class="max-w-56 rounded-full object-cover shadow-2xl hover:scale-105"
+                />
+            </a>
+			<div>
+                <h3 class="text-2xl font-bold">Hi there! My name is</h3>
+				<h1 class="text-5xl font-bold">Tobias Weber</h1>
+				<p class="pt-3 pb-6">
+                    I love coding, problem solving, learning and understanding how stuff works.
+                    Having just completed my Master's degree in Computer Science, I’m excited to turn that passion into a career!
+				</p>
+				<a class="btn btn-primary me-4" href="/about">Learn More</a>
+                <a class="btn btn-accent" href="mailto:info@tobweb.ch">
+                    Contact Me
+                </a>
+			</div>
 		</div>
 	</div>
-	<div class="chat chat-start">
-		<div class="chat-bubble chat-bubble-accent">
-			That's never been done in the history of the Jedi.
-		</div>
-	</div>
-	<div class="chat chat-start">
-		<div class="chat-bubble chat-bubble-neutral">It's insulting!</div>
-	</div>
-	<div class="chat chat-end">
-		<div class="chat-bubble chat-bubble-info">Calm down, Anakin.</div>
-	</div>
-	<div class="chat chat-end">
-		<div class="chat-bubble chat-bubble-success">You have been given a great honor.</div>
-	</div>
-	<div class="chat chat-end">
-		<div class="chat-bubble chat-bubble-warning">To be on the Council at your age.</div>
-	</div>
-	<div class="chat chat-end">
-		<div class="chat-bubble chat-bubble-error">It's never happened before.</div>
-	</div>
+
+    <div class="flex flex-row justify-between items-center mb-8">
+        <h2 class="text-4xl font-bold">Recent Projects</h2>
+        <a href="/projects" class="btn btn-sm">View All</a>
+
+    </div>
 </Layout>

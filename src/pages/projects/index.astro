@@ -2,11 +2,12 @@
 import Layout from "../../layouts/Layout.astro";
 
 import { getCollection } from 'astro:content';
+import PageTitle from "../../components/PageTitle.astro";
 const allProjects = await getCollection('projects');
 ---
 
 <Layout title="Projects - TobWeb">
-	<h1 class="text-6xl font-extrabold mb-5">Projects</h1>
+	<PageTitle>Projects</PageTitle>
 
 	<p class="text-base mb-3">This is where I showcase all my projects.</p>
 

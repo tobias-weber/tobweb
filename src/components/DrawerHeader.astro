@@ -1,0 +1,130 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import ThemeController from "./ThemeController.astro";
+---
+
+<div class="drawer">
+    <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
+    <div class="drawer-content flex flex-col min-h-screen">
+        <!-- Navbar -->
+        <nav class="navbar bg-base-300 w-full sticky top-0 z-50 shadow-md bg-base-100 dark:bg-stone-950">
+            <div class="flex-none md:hidden">
+                <label for="my-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            class="inline-block h-6 w-6 stroke-current"
+                    >
+                        <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                        ></path>
+                    </svg>
+                </label>
+            </div>
+
+            <div class="navbar-start">
+                <a href="/"
+                   class="text-4xl font-bold text-indigo-600 font-mono ms-5 hover:scale-110 transition-transform duration-300">
+                    <span id="scramble-title">tobweb_</span>
+                </a>
+            </div>
+            <div class="navbar-center hidden md:flex">
+                <ul class="menu menu-horizontal px-1">
+                    <li>
+                        <HeaderLink href="/" class="">home</HeaderLink>
+                    </li>
+                    <li>
+                        <HeaderLink href="/projects" class="hover:underline">projects</HeaderLink>
+                    </li>
+                    <li>
+                        <HeaderLink href="/about" class="hover:underline">about</HeaderLink>
+                    </li>
+                </ul>
+            </div>
+            <div class="navbar-end pe-5">
+                <ThemeController/>
+            </div>
+        </nav>
+
+        <!-- Page content -->
+        <slot/>
+    </div>
+    <div class="drawer-side z-100">
+        <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+        <ul class="menu bg-stone-300 dark:bg-stone-800 min-h-full w-80 p-4">
+            <!-- Sidebar content here -->
+            <li>
+                <HeaderLink href="/">Home</HeaderLink>
+            </li>
+            <li>
+                <HeaderLink href="/projects" class="hover:underline">Projects</HeaderLink>
+            </li>
+            <li>
+                <HeaderLink href="/about" class="hover:underline">About</HeaderLink>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    const target = document.getElementById("scramble-title") as HTMLElement;
+    const finalText = "tobweb_";
+    const scrambleChars = "!<>-\\/[]{}—=+*^?#0123456789abcdefghijklmnopqrstuvwxyz";
+    const duration = 1500; // total duration in ms
+
+    interface ScrambleChar {
+        fromChar: string;
+        toChar: string;
+        startTime: number;
+        resolved: boolean;
+    }
+
+    function scrambleText(el: HTMLElement, text: string, totalDuration: number): void {
+        const startTime = performance.now();
+        const chars: ScrambleChar[] = Array.from(text).map((char, i) => ({
+            fromChar: scrambleChars[Math.floor(Math.random() * scrambleChars.length)],
+            toChar: char,
+            startTime: i * (totalDuration / text.length),
+            resolved: false,
+        }));
+
+        function update(now: number) {
+            const elapsed = now - startTime;
+            let output = "";
+
+            chars.forEach((item, i) => {
+                if (elapsed >= item.startTime + (totalDuration / text.length)) {
+                    output += item.toChar;
+                    item.resolved = true;
+                } else if (elapsed >= item.startTime) {
+                    output += `<span class="text-gray-400">${scrambleChars[Math.floor(Math.random() * scrambleChars.length)]}</span>`;
+                } else {
+                    output += " ";
+                }
+            });
+
+            el.innerHTML = output;
+
+            if (chars.some((char) => !char.resolved)) {
+                requestAnimationFrame(update);
+            }
+        }
+
+        requestAnimationFrame(update);
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        const hasScrambled = sessionStorage.getItem("scramble-done");
+
+        if (!hasScrambled && target) {
+            scrambleText(target, finalText, duration);
+            sessionStorage.setItem("scramble-done", "true");
+        } else {
+            target.textContent = finalText;
+        }
+    });
+</script>

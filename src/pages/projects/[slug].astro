@@ -22,6 +22,9 @@ const {Content} = await project.render();
 ---
 
 <Layout>
+    <div>
+        <a href="/projects" class="btn btn-sm mb-8">Go Back</a>
+    </div>
     <FormattedDate date={project.data.pubDate} />
     <Prose>
         <Content/>

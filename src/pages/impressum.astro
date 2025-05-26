@@ -1,12 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import {CONTACT_EMAIL} from '../utils/constants';
+import Prose from "../components/Prose.astro";
+import PageTitle from "../components/PageTitle.astro";
 ---
 
 <Layout>
-    <h1 class="text-6xl font-extrabold mb-5">Impressum</h1>
+    <PageTitle>Impressum</PageTitle>
 
-    <div class="prose dark:prose-invert max-w-none">
+    <Prose>
         <b>Verantwortliche Instanz:</b><br/>Tobias Weber<br/>
         Gründli 35<br/>
         4242 Laufen<br/>
@@ -34,4 +36,5 @@ import {CONTACT_EMAIL} from '../utils/constants';
         ausschliesslich Tobias Weber oder den speziell genannten Rechteinhabern. Für die Reproduktion jeglicher Elemente
         ist die schriftliche Zustimmung des Urheberrechtsträgers im Voraus einzuholen.<br/><br/>
         <strong>Quelle</strong>: <a style='color:inherit;text-decoration:none;' href='https://brainbox.swiss/'>BrainBox Solutions</a></div>
+    </Prose>
 </Layout>
