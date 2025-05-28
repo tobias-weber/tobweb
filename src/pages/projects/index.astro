@@ -3,19 +3,30 @@ import Layout from "../../layouts/Layout.astro";
 
 import { getCollection } from 'astro:content';
 import PageTitle from "../../components/PageTitle.astro";
+import {Image} from "astro:assets";
+import FormattedDate from "../../components/FormattedDate.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
 const allProjects = await getCollection('projects');
+allProjects.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 ---
 
 <Layout title="Projects - TobWeb">
 	<PageTitle>Projects</PageTitle>
 
-	<p class="text-base mb-3">This is where I showcase all my projects.</p>
+	<p class="text-base mb-8">This is where I showcase all my projects.</p>
 
-	<ul class="list-disc">
-		{allProjects.map((project) =>
-			<li class="list-item">
-				<a href={'/projects/' +project.slug}>{project.data.title}</a>
-			</li>
-		)}
-	</ul>
+	<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+		{
+			allProjects.map((project) =>
+					<ProjectCard
+						id={project.id}
+						title={project.data.title}
+						image={project.data.image}
+						pubDate={project.data.pubDate}
+						description={project.data.description}>
+					</ProjectCard>
+			)
+		}
+	</div>
+
 </Layout>
