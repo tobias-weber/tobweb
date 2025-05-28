@@ -3,11 +3,9 @@ import Layout from "../../layouts/Layout.astro";
 
 import { getCollection } from 'astro:content';
 import PageTitle from "../../components/PageTitle.astro";
-import {Image} from "astro:assets";
-import FormattedDate from "../../components/FormattedDate.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 const allProjects = await getCollection('projects');
-allProjects.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+allProjects.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout title="Projects - TobWeb">

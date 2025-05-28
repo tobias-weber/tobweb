@@ -2,14 +2,19 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import profileImage from '../assets/sample_profile_img.png'
+import {getCollection} from "astro:content";
+import ProjectCard from "../components/ProjectCard.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const N_LATEST = 2;
+
+const allProjects = await getCollection('projects');
+const latestProjects = allProjects.sort((a, b) =>
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, N_LATEST);
 ---
 
 <Layout>
 
-	<div class="hero mb-16">
+	<div class="hero mb-32">
 		<div class="hero-content flex-col md:flex-row">
             <a href="/about">
                 <Image src={profileImage} alt="Image of the author"
@@ -17,7 +22,7 @@ import profileImage from '../assets/sample_profile_img.png'
                 />
             </a>
 			<div>
-                <h3 class="text-2xl font-bold">Hi there! My name is</h3>
+                <h3 class="text-2xl font-bold">Hello! My name is</h3>
 				<h1 class="text-5xl font-bold">Tobias Weber</h1>
 				<p class="pt-3 pb-6">
                     I love coding, problem solving, learning and understanding how stuff works.
@@ -33,7 +38,17 @@ import profileImage from '../assets/sample_profile_img.png'
 
     <div class="flex flex-row justify-between items-center mb-8">
         <h2 class="text-4xl font-bold">Recent Projects</h2>
-        <a href="/projects" class="btn btn-sm">View All</a>
-
+        <a href="/projects" class="btn btn-sm btn-neutral">View All</a>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {latestProjects.map(project =>
+                <ProjectCard
+                        id={project.id}
+                        title={project.data.title}
+                        image={project.data.image}
+                        pubDate={project.data.pubDate}
+                        description={project.data.description}>
+                </ProjectCard>
+        )}
     </div>
 </Layout>

@@ -7,7 +7,9 @@ import ThemeController from "./ThemeController.astro";
     <input id="my-drawer" type="checkbox" class="drawer-toggle"/>
     <div class="drawer-content flex flex-col min-h-screen">
         <!-- Navbar -->
-        <nav class="navbar bg-base-300 w-full sticky top-0 z-50 shadow-md bg-base-100 dark:bg-stone-950">
+        <nav class="navbar w-full sticky top-0 z-50 shadow-md
+                bg-base-100
+                dark:bg-base-300">
             <div class="flex-none md:hidden">
                 <label for="my-drawer" aria-label="open sidebar" class="btn btn-square btn-ghost">
                     <svg
@@ -28,7 +30,7 @@ import ThemeController from "./ThemeController.astro";
 
             <div class="navbar-start">
                 <a href="/"
-                   class="text-4xl font-bold text-indigo-600 font-mono ms-5 hover:scale-110 transition-transform duration-300">
+                   class="text-4xl font-bold text-primary font-mono ms-5 hover:scale-110 transition-transform duration-300">
                     <span id="scramble-title">tobweb_</span>
                 </a>
             </div>
@@ -55,7 +57,7 @@ import ThemeController from "./ThemeController.astro";
     </div>
     <div class="drawer-side z-100">
         <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-        <ul class="menu bg-stone-300 dark:bg-stone-800 min-h-full w-80 p-4">
+        <ul class="menu bg-base-200 min-h-full w-80 p-4">
             <!-- Sidebar content here -->
             <li>
                 <HeaderLink href="/">Home</HeaderLink>
