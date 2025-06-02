@@ -23,3 +23,16 @@ Welcome to my _new blog_ about learning Astro! Here, I will share my learning jo
 ## What's next
 
 I will finish the Astro tutorial, and then keep adding more posts. Watch this space for more to come.
+
+Markdown Headers:
+
+# H1
+
+## H2
+
+### H3
+
+#### H4
+
+Text Normal  
+**Text Bold**

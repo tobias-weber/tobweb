@@ -98,7 +98,7 @@ import ThemeController from "./ThemeController.astro";
             const elapsed = now - startTime;
             let output = "";
 
-            chars.forEach((item, i) => {
+            chars.forEach(item => {
                 if (elapsed >= item.startTime + (totalDuration / text.length)) {
                     output += item.toChar;
                     item.resolved = true;

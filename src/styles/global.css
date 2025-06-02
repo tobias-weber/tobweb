@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @plugin "@tailwindcss/typography";
 @custom-variant dark (&:where(.dark, .dark *));
 @plugin "daisyui";
@@ -76,4 +77,18 @@
 }
 
 
+::-moz-selection { /* Code for Firefox */
+    background: var(--color-accent);
+}
 
+.dark::-moz-selection {
+    color: black;
+}
+
+::selection {
+    background: var(--color-accent);
+}
+
+.dark::selection {
+    color: black;
+}

@@ -1,14 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PageTitle from "../components/PageTitle.astro";
+import SkillElement from "../components/SkillElement.astro";
+import Location from "../components/Location.astro";
 ---
 
 <Layout title="About - TobWeb">
     <PageTitle>About Me</PageTitle>
 
-    <ul class="timeline timeline-vertical">
+    <h2 class="text-4xl mb-8 font-bold">My Education</h2>
+
+    <ul class="timeline timeline-vertical timeline-snap-icon timeline-compact mb-8">
         <li>
-            <div class="timeline-start">2020</div>
             <div class="timeline-middle">
                 <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -23,12 +26,18 @@ import PageTitle from "../components/PageTitle.astro";
                     />
                 </svg>
             </div>
-            <div class="timeline-end timeline-box">Completed Matura</div>
-            <hr class="bg-primary" />
+            <div class="timeline-end mb-10">
+                <time class="font-mono italic font-bold">2025</time>
+                <div class="text-lg font-extrabold">Master's Degree in Computer Science</div>
+                <Location text="University of Basel" class="mb-2"></Location>
+                I pursued the Distributed Systems specialization as my Major and completed it with excellent academic
+                results. <!--TODO: Change to bullet points / icon for location?-->
+                My Master's thesis focused on enhancing the Polypheny project through the development of novel
+                multi-model data pipelines.<!--TODO: link to project-->
+            </div>
+            <hr class="bg-primary"/>
         </li>
         <li>
-            <hr class="bg-primary" />
-            <div class="timeline-start">2023</div>
             <div class="timeline-middle">
                 <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -43,12 +52,18 @@ import PageTitle from "../components/PageTitle.astro";
                     />
                 </svg>
             </div>
-            <div class="timeline-end timeline-box">Bachelor's Degree in CS</div>
-            <hr class="bg-primary" />
+            <div class="timeline-end mb-10">
+                <time class="font-mono italic font-bold">2023</time>
+                <div class="text-lg font-extrabold">Bachelor's Degree in Computer Science</div>
+                <Location text="University of Basel" class="mb-2"></Location>
+                The Bachelor's degree has given me a strong foundation in algorithms, software engineering and
+                artificial intelligence.
+                In my Bachelor's thesis, I integrated computational notebooks into a PolyDBMS.
+                <!--TODO: link to project-->
+            </div>
+            <hr class="bg-primary"/>
         </li>
         <li>
-            <hr class="bg-primary" />
-            <div class="timeline-start">2025</div>
             <div class="timeline-middle">
                 <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -63,18 +78,56 @@ import PageTitle from "../components/PageTitle.astro";
                     />
                 </svg>
             </div>
-            <div class="timeline-end timeline-box">Master's Degree in CS</div>
-            <hr />
-        </li>
-        <li>
-            <hr />
-            <div class="h-3"> <!--artificial spacer-->
-            </div>
-            <div class="timeline-middle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
-                    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 0 1-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 0 1-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 0 1-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584ZM12 18a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" clip-rule="evenodd" />
-                </svg>
+            <div class="timeline-end mb-10">
+                <time class="font-mono italic font-bold">2020</time>
+                <div class="text-lg font-extrabold">Gymnasiale Matura</div>
+                <Location text="Gymnasium Laufental-Thierstein" class="mb-2"></Location>
+                Completed with major subjects Maths and Physics.
             </div>
         </li>
     </ul>
+
+
+    <h2 class="text-4xl mb-8 font-bold">My Skills</h2>
+    <p class="mb-4">
+        I consider my key strengths to be the ability to systematically analyze and solve problems, quickly grasp new
+        concepts and efficiently learn new skills.
+        I believe that underlying problem-solving abilities are more important than any specific technical skill.
+    </p>
+
+    <p class="mb-4">
+        Nonetheless, the following list provides an overview of the languages and technologies I’ve worked with.
+        Some of these I know very well, others I've wrestled with just enough to respect. Either way, I’m always up for
+        learning more!
+    </p>
+
+    <h3 class="text-2xl mb-8 font-bold">Languages</h3>
+
+    <div class="flex flex-wrap gap-12 items-center justify-center mb-12">
+        <SkillElement icon="java" darkIcon="java-light" title="Java"/>
+        <SkillElement icon="python" title="Python"/>
+        <SkillElement icon="postgresql" title="SQL"/>
+        <SkillElement icon="c-plusplus" title="C++"/>
+        <SkillElement icon="kotlin" title="Kotlin"/>
+    </div>
+    <div class="flex flex-wrap gap-12 items-center justify-center mb-8">
+        <SkillElement icon="typescript" title="TypeScript"/>
+        <SkillElement icon="html" title="HTML"/>
+        <SkillElement icon="css" title="CSS"/>
+    </div>
+
+
+    <h3 class="text-2xl mb-8 font-bold">Technologies</h3>
+
+    <div class="flex flex-wrap gap-12 items-center justify-center mb-8">
+        <SkillElement icon="git" title="Git"/>
+        <SkillElement icon="docker" title="Docker"/>
+        <SkillElement icon="angular" title="Angular"/>
+        <SkillElement icon="react" title="React"/>
+        <SkillElement icon="flask-dark" darkIcon="flask-light" title="Flask"/>
+        <SkillElement icon="pytorch" title="PyTorch"/>
+        <SkillElement icon="spark" title="Apache Spark"/>
+        <SkillElement icon="mongodb-dark" darkIcon="mongodb" title="MongoDB"/>
+        <SkillElement icon="neo4j" title="Neo4j"/>
+    </div>
 </Layout>

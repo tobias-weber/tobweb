@@ -1,7 +1,7 @@
 ---
 import {getCollection, render} from 'astro:content';
 import type {CollectionEntry} from 'astro:content';
-import { Image } from 'astro:assets';
+import {Image} from 'astro:assets';
 import Layout from "../../layouts/Layout.astro";
 import Prose from "../../components/Prose.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
@@ -26,14 +26,15 @@ const cover = project.data.image.src
 
 <Layout>
     <div>
-        <a href="/projects" class="btn btn-sm mb-8">Go Back</a>
+        <a href="/projects" class="btn btn-sm mb-8 btn-neutral">Go Back</a>
     </div>
-    <FormattedDate date={project.data.pubDate} />
+    <FormattedDate date={project.data.pubDate}/>
     <PageTitle>
         {project.data.title}
     </PageTitle>
     <div class="mt-4 mb-8">
-        <Image src={cover} alt={project.data.image.alt} width={cover.width || 1920} height={cover.height || 1080} class="w-full object-contain" />
+        <Image src={cover} alt={project.data.image.alt} width={cover.width || 1920} height={cover.height || 1080}
+               class="w-full object-contain"/>
     </div>
     <Prose>
         <Content/>
