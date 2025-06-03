@@ -76,7 +76,7 @@ import ThemeController from "./ThemeController.astro";
     const target = document.getElementById("scramble-title") as HTMLElement;
     const finalText = "tobweb_";
     const scrambleChars = "!<>-\\/[]{}—=+*^?#0123456789abcdefghijklmnopqrstuvwxyz";
-    const duration = 1500; // total duration in ms
+    const duration = 1200; // total duration in ms
 
     interface ScrambleChar {
         fromChar: string;
@@ -121,8 +121,7 @@ import ThemeController from "./ThemeController.astro";
 
     window.addEventListener("DOMContentLoaded", () => {
         const hasScrambled = sessionStorage.getItem("scramble-done");
-
-        if (!hasScrambled && target) {
+        if (window.location.pathname === '/' || (!hasScrambled && target)) {
             scrambleText(target, finalText, duration);
             sessionStorage.setItem("scramble-done", "true");
         } else {

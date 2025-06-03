@@ -1,0 +1,69 @@
+---
+title: "Master's Thesis"
+pubDate: 2025-05-03
+description: "Design of an execution model for multi-model data pipelines and its implementation as an ETL workflow engine for Polypheny."
+image:
+  src: '/src/assets/projects/msc-thesis/workflow_large.png'
+  alt: 'Workflow Engine'
+---
+import Aside from "../../components/Aside.astro";
+
+# Data Pipelines in a PolyDBMS
+
+## TL;DR
+In my Master's thesis called _Data Pipelines in a PolyDBMS_ I created a novel data pipelining tool that is built on top of [Polypheny](https://polypheny.com/).
+It enables the visual construction and execution of powerful multi-model data ingestion workflows.
+This makes it possible to work seamlessly with relational, document and graph data, all at the same time.
+
+
+
+## Limitations of Existing ETL Tools
+To address complex data ingestion tasks, data engineers rely on [ETL processes](https://en.wikipedia.org/wiki/Extract,_transform,_load).
+They _extract_ data from various heterogeneous sources into a staging area, _transform_ (data cleaning, schema matching...) and _load_ it into a single target system.
+
+With the rise of data hungry AI systems and organizations wanting to gain more insights from increasingly diverse data, this approach has become insufficient.
+Existing ETL tools like Apache Airflow, Hop, NiFi or KNIME are inherently designed for processing tabular ([relational](https://en.wikipedia.org/wiki/Relational_model)) data.
+With the rise of NoSQL systems, data may no longer follow a fixed schema (e.g. a [document database](https://en.wikipedia.org/wiki/Document-oriented_database) for product description) or is structured completely differently.
+For instance, relationships between users on a social media platform can be efficiently represented as a [property graph](https://en.wikipedia.org/wiki/Property_graph).
+
+A modern data ingestion tool must thus be able to work with the relational, document and graph model and facilitate mapping data between these models.
+
+## My Contributions
+
+In my thesis, I extended the data pipeline concept that is used by ETL processes to support multiple data models.
+This is made possible by the innovative database system Polypheny.
+
+<Aside variant="info">
+    Polypheny is what we call a PolyDBMS.
+    It unifies access and management of heterogeneous data in different underlying storage engines (PostgreSQL, MongoDB, Neo4j...).
+    Any of its supported query languages (SQL, MongoQL, Cypher...) can be used to query the data.
+</Aside>
+
+The project resulted in a workflow engine plugin for Polypheny and the addition of a visual workflow editor to its browser-based user interface.
+A workflow is a directed acyclic graph of connected processing steps that we call activities. Some of the things activities can achieve:
+
+- Extracting data from CSV, JSON, XML or text files
+- Schema Mapping
+- Data cleaning
+- Executing queries
+- Mapping from one data model to another (e.g. constructing a graph from a table of users linked by a follower join table)
+- Sending REST requests
+- Executing custom transforms specified with Java code
+- Loading data to Polypheny
+
+Nested workflows, control edges and a variable system enable the orchestration of complex workflows.
+Execution of workflows can be automated and optimization techniques ensure good performance even for large ingestion tasks!
+
+
+## Demo Video
+
+<video width="1920" height="1080" controls controlsList="nodownload" oncontextmenu="return false;">
+    <source src="/projects/msc-thesis/demo.mp4#t=2.5" type="video/mp4"> </source>
+    Your browser does not support video playback.
+</video>
+
+# Links
+
+- [Project Description](https://dbis.dmi.unibas.ch/teaching/studentprojects/data-pipelines-in-a-polydbms/)
+- [Backend Code on Github](https://github.com/polypheny/Polypheny-DB)
+- [Frontend Code on Github](https://github.com/polypheny/Polypheny-UI)

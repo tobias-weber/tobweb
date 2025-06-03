@@ -1,0 +1,51 @@
+---
+// Idea from https://cosmicthemes.com/blog/astro-aside-component/
+import {Icon} from "astro-icon/components";
+
+interface Props {
+    variant: "tip" | "caution" | "danger" | "info";
+}
+
+const {variant} = Astro.props as Props;
+
+const icon = (() => {
+    switch (variant) {
+        case "tip":
+            return "bulb";
+        case "caution":
+            return "alert-triangle";
+        case "danger":
+            return "flame";
+        case "info":
+            return "info-circle";
+    }
+})();
+---
+
+<div
+        class:list={[
+            "aside prose-p:my-0 my-3 rounded-md border-l-4 px-4 py-3",
+            {
+                "border-success bg-success/20":
+                    variant === "tip",
+            },
+            {
+                "border-warning bg-warning/20":
+                    variant === "caution",
+            },
+            {
+                "border-error bg-error/20":
+                    variant === "danger",
+            },
+            {
+                "border-info bg-info/10":
+                    variant === "info",
+            },
+        ]}
+>
+    <div class="flex items-center gap-2 pb-2">
+        <Icon name={icon} class="h-7 w-7" aria-hidden="true"/>
+        <p class="text-sm font-bold">{variant.toUpperCase()}</p>
+    </div>
+    <slot/>
+</div>
