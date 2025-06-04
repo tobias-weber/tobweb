@@ -7,11 +7,16 @@ image:
   alt: 'Workflow Engine'
 ---
 import Aside from "../../components/Aside.astro";
+import CaptionedImage from "../../components/CaptionedImage.astro";
+import archImg from '/src/assets/projects/msc-thesis/architecture.png';
 
 # Data Pipelines in a PolyDBMS
+The Master's thesis is the final research project required to complete the degree.
+It is completed over the course of six months that follows an initial preparation phase of one month.
+
 
 ## TL;DR
-In my Master's thesis called _Data Pipelines in a PolyDBMS_ I created a novel data pipelining tool that is built on top of [Polypheny](https://polypheny.com/).
+As part of my thesis, called _Data Pipelines in a PolyDBMS_, I created a novel data pipelining tool that is built on top of [Polypheny](https://polypheny.com/).
 It enables the visual construction and execution of powerful multi-model data ingestion workflows.
 This makes it possible to work seamlessly with relational, document and graph data, all at the same time.
 
@@ -34,7 +39,7 @@ In my thesis, I extended the data pipeline concept that is used by ETL processes
 This is made possible by the innovative database system Polypheny.
 
 <Aside variant="info">
-    Polypheny is what we call a PolyDBMS.
+    Polypheny is an instance of what is called a **PolyDBMS**.
     It unifies access and management of heterogeneous data in different underlying storage engines (PostgreSQL, MongoDB, Neo4j...).
     Any of its supported query languages (SQL, MongoQL, Cypher...) can be used to query the data.
 </Aside>
@@ -54,11 +59,15 @@ A workflow is a directed acyclic graph of connected processing steps that we cal
 Nested workflows, control edges and a variable system enable the orchestration of complex workflows.
 Execution of workflows can be automated and optimization techniques ensure good performance even for large ingestion tasks!
 
+The workflow engine consists of different components, such as a scheduler that enables the concurrent execution of independent activities.
+<CaptionedImage image={archImg} alt="The Workflow Engine architecture."
+                caption="High-level architecture of the Workflow Engine."/>
+
 
 ## Demo Video
 
 <video width="1920" height="1080" controls controlsList="nodownload" oncontextmenu="return false;">
-    <source src="/projects/msc-thesis/demo.mp4#t=2.5" type="video/mp4"> </source>
+    <source src="/videos/msc-thesis_demo.mp4#t=2.5" type="video/mp4"> </source>
     Your browser does not support video playback.
 </video>
 

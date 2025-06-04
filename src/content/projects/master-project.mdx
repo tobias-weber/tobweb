@@ -1,0 +1,46 @@
+---
+title: "Master Project"
+pubDate: 2024-07-17
+description: "Development of PolyAlgebra: A serializable way to represent and (visually) edit query plans in a PolyDBMS."
+image:
+    src: "/src/assets/projects/msc-project/poly-algebra.png"
+    alt: "PolyAlgebra"
+---
+import CaptionedImage from "../../components/CaptionedImage.astro";
+import editorImg from '/src/assets/projects/msc-project/plan-editor.png';
+
+# Textual and Visual Algebra Exploration
+
+As part of the Distributed Systems specialization of my Master's degree, a research project must be completed.
+The project took me four months to complete in parallel with other lectures.
+
+## Query Plans
+
+At the core of a database system are query plans. Given a (declarative) query, a corresponding query plan specifies
+the operations required for executing it as a tree of (relational) algebra operators.
+Query plans are also used for optimizing the query execution, making them a vital part of overall query performance.
+
+If a query takes too long to complete, it is always a good idea to inspect the query plan to search for potential bottlenecks.
+Existing database systems often provide an `EXPLAIN` statement to get the textual (and sometimes visual)
+representation of a plan.
+
+## Project Idea
+
+The PolyDBMS [Polypheny](https://polypheny.com/) uses a hierarchic system of logical, allocation and physical query plans that enable execution across multiple storage engines.
+In my project, I introduced the textual _PolyAlgebra_ representation for these plans.
+What makes them special is that any plan can be reconstructed from PolyAlgebra.
+This makes it the perfect tool to explore and modify query plans and observe what happens when executing them.
+
+## Plan Editor
+
+A user-facing plan editor allows for the textual and visual editing of PolyAlgebra. For this, query plans are displayed as interactive operator trees.
+Various features improve usability for both new and experienced users.
+
+
+<CaptionedImage image={editorImg} alt="PolyAlgebra Editor Screenshot." caption="The PolyAlgebra editor for Polypheny. Users can switch between using the textual and visual editor at any time."/>
+
+# Links
+
+- [Project Description](https://dbis.dmi.unibas.ch/teaching/studentprojects/textual-and-visual-algebra-exploration/)
+- [Backend Code on Github](https://github.com/polypheny/Polypheny-DB)
+- [Frontend Code on Github](https://github.com/polypheny/Polypheny-UI)

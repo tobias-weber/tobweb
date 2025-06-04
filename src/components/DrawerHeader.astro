@@ -1,6 +1,7 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import ThemeController from "./ThemeController.astro";
+import {Image} from 'astro:assets';
 ---
 
 <div class="drawer">
@@ -59,6 +60,7 @@ import ThemeController from "./ThemeController.astro";
         <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
         <ul class="menu bg-base-200 min-h-full w-80 p-4">
             <!-- Sidebar content here -->
+            <Image src="/favicon.svg" alt="test" width="120" height="120" />
             <li>
                 <HeaderLink href="/">Home</HeaderLink>
             </li>

@@ -1,0 +1,47 @@
+---
+title: "Bachelor's Thesis"
+pubDate: 2023-07-23
+description: "Creating a middleware and new user interface for Jupyter Notebooks that introduces novel Query Cells to simplify data retrieval."
+image:
+    src: '/src/assets/projects/bsc-thesis/nb-query.png'
+    alt: 'Notebook query cell.'
+---
+
+import CaptionedImage from "../../components/CaptionedImage.astro";
+import archImg from '/src/assets/projects/bsc-thesis/architecture.png';
+
+# Enhancing Jupyter Notebooks with Multi-Model Database Support
+
+The Bachelor's thesis is a research project at the end of the Bachelor's degree.
+I completed it over the course of four months in parallel to other lectures.
+
+
+## Project Idea
+Computational notebooks such as [Jupyter Notebook](https://jupyter.org/) have become the method of choice for data scientists to explore, analyze and present data.
+What remains cumbersome is the retrieval of data from various different data sources.
+
+In this project, I developed a middleware for Jupyter Notebook on the basis of the database system [Polypheny](https://polypheny.com/).
+It introduces a new cell type to notebooks, called a `Query Cell`.
+This enables users to execute a query on any data stored in Polypheny, using any of the supported query languages (SQL, MongoQL, Cypher and more).
+The results shown visually and become accessible to code cells for further analysis and visualization.
+
+To make these novel features accessible, I developed a new notebook interface from the ground up for the browser-based user interface of Polypheny.
+Notebooks are executed using a Jupyter Server instance that runs in an automatically deployed Docker container.
+
+
+<CaptionedImage image={archImg} alt="Middleware architecture of the notebook interface."
+                caption="The middleware architecture that enables the tight integration with Polypheny."/>
+
+## Demo Video
+
+<video width="1920" height="1080" controls controlsList="nodownload" oncontextmenu="return false;">
+    <source src="/videos/bsc-thesis_demo.mp4#t=2.5" type="video/mp4"> </source>
+    Your browser does not support video playback.
+</video>
+
+
+# Links
+
+- [Project Overview](https://dbis.dmi.unibas.ch/teaching/studentprojects/enhancing-juypter-notebooks-with-multi-model-database-support/)
+- [Backend Code on Github](https://github.com/polypheny/Polypheny-DB/tree/master/plugins/notebooks)
+- [Frontend Code on Github](https://github.com/polypheny/Polypheny-UI/tree/master/src/app/plugins/notebooks)
