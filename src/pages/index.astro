@@ -6,10 +6,15 @@ import {getCollection} from "astro:content";
 import ProjectCard from "../components/ProjectCard.astro";
 
 const N_LATEST = 2;
+const FEATURED = ['master-thesis', 'photo-mosaics']; // set to empty array to disable
 
-const allProjects = await getCollection('projects');
-const latestProjects = allProjects.sort((a, b) =>
+const allProjects = await getCollection('projects', entry => FEATURED.length === 0 || FEATURED.includes(entry.id) );
+
+const latestProjects = allProjects
+    .sort((a, b) =>
     b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, N_LATEST);
+
+
 ---
 
 <Layout>
@@ -38,7 +43,7 @@ const latestProjects = allProjects.sort((a, b) =>
     </div>
 
     <div class="flex flex-row justify-between items-center mb-8">
-        <h2 class="text-4xl font-bold">Recent Projects</h2>
+        <h2 class="text-4xl font-bold">Featured Projects</h2>
         <a href="/projects" class="btn btn-sm btn-neutral">View All</a>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
