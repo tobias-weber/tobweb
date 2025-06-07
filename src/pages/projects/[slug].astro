@@ -28,10 +28,18 @@ const cover = project.data.image.src
     <div>
         <a href="/projects" class="btn btn-sm mb-8 btn-neutral">Back to Projects</a>
     </div>
-    <FormattedDate date={project.data.pubDate}/>
-    <PageTitle>
+    {
+        project.data.tools &&
+            <div class="flex gap-2 mb-4">
+                {project.data.tools?.map(tool =>
+                        <div class="badge badge-outline badge-primary">{tool}</div>
+                )}
+            </div>
+    }
+    <h1 class="text-6xl font-extrabold mb-4">
         {project.data.title}
-    </PageTitle>
+    </h1>
+    <FormattedDate date={project.data.pubDate}/>
     <div class="mt-4 mb-8">
         <Image src={cover} alt={project.data.image.alt} width={cover.width || 1920} height={cover.height || 1080}
                class="w-full object-contain"/>

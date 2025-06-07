@@ -1,0 +1,38 @@
+---
+title: "Interfinity Festival: Voting Tool"
+pubDate: 2024-03-20
+description: "Built a live voting tool for a public game show, where the audience can vote using their phones and see the results update in real time on stage."
+image:
+    src: "/src/assets/projects/artificial-art/present-view.png"
+    alt: "The voting tool with an active vote."
+tools: ["React", "Flask", "SQL"]
+---
+
+In this project in collaboration with [Tobias Hafner](https://github.com/TobiasHafner), we developed a tool that enables audience members of a game show to participate in a vote using their phones.
+Results are shown and updated in real time for everyone to see.
+
+## Artificial Art – AI vs. Human Composers
+As part of the [Interfinity Festival](https://www.interfinity.ch/) in Basel, the *Artificial Art* game show lets human composers compete against AI compositions across five chapters.
+The audience hears two versions per chapter and piece and chooses which piece was AI and which was human.
+
+After both versions are performed by a human ensemble, the audience may use their phones to vote which piece was composed by a human.
+The voting results are shown as two rising bars. After the vote is over, the true answer is revealed.
+
+## Voting Tool
+The specific requirements on the voting process and presentation required a custom implementation of a suitable tool.
+The tool consists of a React frontend and a backend created with Flask.
+The frontend is divided into three separate views:
+
+- Voter View: Accessed by scanning a QR-code. Allows participants to submit at most one vote per question.
+- Presenter View: Projected to the big screen. Seamlessly animates between different stages of a vote and shows the results as bar plots that update in real time.
+- Admin View: Allows authenticated users to register votes, initiate state transitions and reveal the correct answer.
+
+The backend is responsible for efficiently processing and validating votes.
+We have evaluated the system performance to ensure that it can handle hundreds of requests per second.
+
+<br/>
+# Links
+
+- <a href="https://telebasel.ch/sendungen/punkt6/215653?t=715" target="_blank">Video of the Vote in Action</a> (Telebasel punk6, 21.3.2024)
+- <a href="https://www.srf.ch/play/tv/-/video/-?urn=urn:srf:video:9c65b2f1-abaa-4583-9ddf-17e1a7743c2d&startTime=820" target="_blank">SRF Einstein Report</a> (21.11.2024)
+- <a href="https://dmi.unibas.ch/en/news-events/detail/artificial-art-ai-vs-human-composers/" target="_blank">Event Description</a>

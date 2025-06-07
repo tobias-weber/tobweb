@@ -3,8 +3,9 @@ title: "Master's Thesis"
 pubDate: 2025-05-03
 description: "Design of an execution model for multi-model data pipelines and its implementation as an ETL workflow engine for Polypheny."
 image:
-  src: '/src/assets/projects/msc-thesis/workflow_large.png'
+  src: '/src/assets/projects/msc-thesis/workflow-editor.png'
   alt: 'Workflow Engine'
+tools: ["Java", "Angular", "SQL", "MongoDB", "Cypher"]
 ---
 import Aside from "../../components/Aside.astro";
 import CaptionedImage from "../../components/CaptionedImage.astro";
@@ -39,9 +40,15 @@ In my thesis, I extended the data pipeline concept that is used by ETL processes
 This is made possible by the innovative database system Polypheny.
 
 <Aside variant="info">
-    Polypheny is an instance of what is called a **PolyDBMS**.
-    It unifies access and management of heterogeneous data in different underlying storage engines (PostgreSQL, MongoDB, Neo4j...).
-    Any of its supported query languages (SQL, MongoQL, Cypher...) can be used to query the data.
+    Polypheny is an instance of a **PolyDBMS**.
+    It unifies access and management of heterogeneous data in different underlying storage engines.
+    Any of its supported query languages can be used to query the data.
+    <div class="dark:hidden -my-16">
+        ![PolyDBMS](/src/assets/projects/msc-thesis/polydbms.png)
+    </div>
+    <div class="hidden dark:block -my-16">
+        ![PolyDBMS](/src/assets/projects/msc-thesis/polydbms_dark.png)
+    </div>
 </Aside>
 
 The project resulted in a workflow engine plugin for Polypheny and the addition of a visual workflow editor to its browser-based user interface.
