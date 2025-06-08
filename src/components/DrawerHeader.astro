@@ -41,10 +41,10 @@ import {Image} from 'astro:assets';
                         <HeaderLink href="/" class="">home</HeaderLink>
                     </li>
                     <li>
-                        <HeaderLink href="/projects" class="hover:underline">projects</HeaderLink>
+                        <HeaderLink href="/projects" class="">projects</HeaderLink>
                     </li>
                     <li>
-                        <HeaderLink href="/about" class="hover:underline">about</HeaderLink>
+                        <HeaderLink href="/about" class="">about</HeaderLink>
                     </li>
                 </ul>
             </div>
@@ -62,13 +62,13 @@ import {Image} from 'astro:assets';
             <!-- Sidebar content here -->
             <Image src="/favicon.svg" alt="test" width="120" height="120" />
             <li>
-                <HeaderLink href="/">Home</HeaderLink>
+                <HeaderLink href="/" class="!text-4xl">Home</HeaderLink>
             </li>
             <li>
-                <HeaderLink href="/projects" class="hover:underline">Projects</HeaderLink>
+                <HeaderLink href="/projects" class="!text-4xl">Projects</HeaderLink>
             </li>
             <li>
-                <HeaderLink href="/about" class="hover:underline">About</HeaderLink>
+                <HeaderLink href="/about" class="!text-4xl">About</HeaderLink>
             </li>
         </ul>
     </div>

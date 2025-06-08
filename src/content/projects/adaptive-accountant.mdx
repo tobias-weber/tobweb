@@ -1,0 +1,71 @@
+---
+title: "Adaptive Accountant"
+pubDate: 2024-10-16
+description: "Automate double-entry bookkeeping by specifying mapping rules."
+image:
+    src: "/src/assets/projects/adaptive-accountant/adaptive-accountant.png"
+    alt: "Screenshot of the Adaptive Accountant terminal-based GUI."
+tools: ["Python"]
+---
+import Aside from "../../components/Aside.astro";
+
+Modern online banking solutions automatically categorize transactions to give customers some idea on how they spent their money.
+This approach is prone to incorrect results and cannot be customized, making it unsuitable for serious and confident bookkeeping.
+
+I solved these problems by creating the **Adaptive Accountant**,
+a tool that automatically processes your bank statements into structured entries compatible with double-entry bookkeeping software.
+
+
+## Target Users
+
+Designed for individuals and small businesses (KMUs) who want to speed up double-entry bookkeeping and increase the confidence in its correctness.
+
+
+## Advantages
+
+- Automatically maps bank statements to accounting entries
+- Custom rules produce consistent results, reducing manual work and errors
+- Human-in-the-loop, but only when needed
+- Supports common bank statement formats
+- Results can be directly imported into accounting software
+
+
+## Mapping Rules
+
+Users define the logic and are prompted for input when needed, ensuring confidence in every mapped transaction.
+
+Bank statements contain several fields, such as the transaction `amount`, `date`, involved `parties` and a `description`.
+The output entries consist of a `date`, `description`, `debit` / `credit` account ID and the transaction `amount`.
+
+The user profile defines a set of rules that govern how each statement is mapped to one or more entries.
+Each rule consists of conditions, transforms and a priority.
+
+<Aside variant="info">
+    Mapping rules are inspired by firewall and packet routing [policies](https://en.wikipedia.org/wiki/Firewall_(computing)#Firewall_Policies).
+</Aside>
+
+
+### Conditions
+
+One or more conditions based on fields in the bank statement can be specified.
+For instance, a rule could specify the conditions that the `amount` must be larger than 500.00 and the `description` must contain the string "health insurance".
+
+### Transforms
+
+When conditions match, transforms define how to convert the statement into the fields of a ledger entry.
+For each target field, only the transform of the highest priority matching rule is applied.
+
+Transforms can combine constant values (e.g. the ID of the expense account for health insurance) with dynamic values.
+These can come either from statement fields or are requested as input from the user.
+This is particularly useful if the description in the statement is missing, not suitable or too generic.
+
+## Implementation
+
+I developed the initial version of the *Adaptive Accountant* with Python and the [Rich package](https://github.com/Textualize/rich) to achieve a beautiful console based UI.
+The user profile is specified in JSON, making it independent of the actual application.
+
+<Aside variant="tip">
+    Stay tuned for updates, as I plan to extend this prototype to a fully-fledged application with a modern GUI, automatic rule generation and more.
+</Aside>
+
+

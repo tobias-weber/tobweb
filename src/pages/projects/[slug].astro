@@ -30,7 +30,7 @@ const cover = project.data.image.src
     </div>
     {
         project.data.tools &&
-            <div class="flex gap-2 mb-4">
+            <div class="flex flex-wrap gap-2 mb-4">
                 {project.data.tools?.map(tool =>
                         <div class="badge badge-outline badge-primary">{tool}</div>
                 )}
