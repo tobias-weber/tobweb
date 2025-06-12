@@ -7,9 +7,12 @@ image:
   alt: 'Workflow Engine'
 tools: ["Java", "Angular", "SQL", "MongoDB", "Cypher"]
 ---
+import {Image} from "astro:assets";
 import Aside from "../../components/Aside.astro";
 import CaptionedImage from "../../components/CaptionedImage.astro";
 import archImg from '/src/assets/projects/msc-thesis/architecture.png';
+import polydbms from '/src/assets/projects/msc-thesis/polydbms.png';
+import polydbmsDark from '/src/assets/projects/msc-thesis/polydbms_dark.png';
 
 # Data Pipelines in a PolyDBMS
 The Master's thesis is the final research project required to complete the degree.
@@ -44,10 +47,10 @@ This is made possible by the innovative database system Polypheny.
     It unifies access and management of heterogeneous data in different underlying storage engines.
     Any of its supported query languages can be used to query the data.
     <div class="dark:hidden -my-16">
-        ![PolyDBMS](/src/assets/projects/msc-thesis/polydbms.png)
+        <Image src={polydbms} alt="PolyDBMS architecture."/>
     </div>
     <div class="hidden dark:block -my-16">
-        ![PolyDBMS](/src/assets/projects/msc-thesis/polydbms_dark.png)
+        <Image src={polydbmsDark} alt="PolyDBMS architecture."/>
     </div>
 </Aside>
 
