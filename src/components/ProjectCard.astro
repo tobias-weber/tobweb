@@ -20,7 +20,7 @@ const {id, title, image, pubDate, description} = Astro.props;
 
 <a href={'/projects/' +id} class="group card bg-white dark:bg-stone-900 border-2 border-white dark:border-base-100 shadow-sm hover:border-primary">
     <figure class="w-full aspect-[2/1]">
-        <Image src={image.src} alt={image.alt} width={600} height={300}
+        <Image src={image.src} alt={image.alt} width={600} height={300} loading="eager"
                class="w-full h-full object-cover object-center group-hover:scale-125 transition-transform duration-300" />
     </figure>
     <div class="card-body">

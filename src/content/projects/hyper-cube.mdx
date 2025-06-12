@@ -1,0 +1,75 @@
+---
+title: "LED HyperCube"
+pubDate: 2022-01-24
+description: "Creating a middleware and new user interface for Jupyter Notebooks that introduces novel Query Cells to simplify data retrieval."
+image:
+    src: '/src/assets/projects/hyper-cube/cube.jpg'
+    alt: 'The HyperCube in action.'
+tools: ["Arduino", "C++"]
+---
+import CaptionedImage from "../../components/CaptionedImage.astro";
+import highResCube from '/src/assets/projects/hyper-cube/6bit-cube.jpg';
+import controller from '/src/assets/projects/hyper-cube/controller.jpg';
+
+# The Initial Project
+
+This Arduino project originally started as the final group project of [Tobias Hafner](https://github.com/TobiasHafner), [Linus Petrucci](https://github.com/linuspetrucci) and me for the Computer Architecture lecture.
+
+
+## Idea
+
+In this project, we constructed a cube consisting of 5 x 5 x 5 individually addressable RGB-LEDs.
+An Arduino is used to display various 3D animations on this *HyperCube*.
+The addition of a custom-built controller makes these animations interactive and even allows to play games like *Snake* on the cube.
+
+## Cube Construction
+
+To keep the number of wires (at least somewhat) manageable, we relied on multiplexing:
+Layers are enabled individually by MOSFETs in quick succession, giving the illusion of the whole cube shining at once.
+
+Each "column" in the cube has its three color channels connected to a custom-made control board that consists of ten 74hc595 shift-registers.
+Since each color channel can be either on or off, we get a total of 2<sup>3</sup> = 8 different colors.
+
+The Arduino, controller and all connections are neatly organized in the 3D-printed socket of the cube.
+
+## Driver Software
+
+We employed an object-oriented approach for the driver code. This allowed us to hide the hardware-specific complexity behind abstractions.
+The `Cube` object provides functions for setting the color of individual LEDs, lines, planes, blocks, spheres or even text characters.
+
+New animations can easily be added by extending the `Animation` class and implementing the `renderNextFrame()` function.
+
+
+
+<br/>
+# My Improvements
+
+After the project finished, I decided to continue working on the cube.
+
+## Performance Optimizations
+
+I was able to drastically improve the performance of the driver program, drastically increasing the maximum frames rate.
+This allowed me to apply the [PWM](https://en.wikipedia.org/wiki/Pulse-width_modulation#Power_delivery) technique for dimming LED color channels.
+As a result the number of colors that can be displayed increased from 8 to 4<sup>3</sup> = 64.
+Even with this additional complexity, animations can be displayed with up to 175 FPS.
+
+## Interactivity
+
+I designed, 3D-printed and assembled a basic game controller consisting of an analog stick and two buttons.
+With its help it is now possible to cycle through different animations stored on the Arduino.
+Some animations react to user input. For example, the playback speed can be changed.
+
+The coolest use case of the controller is to play *Snake* in 3D!
+The addition of a third dimension makes it a completely different playing experience that can only properly be enjoyed on the HyperCube.
+
+<div class="flex max-sm:flex-wrap gap-4">
+    <CaptionedImage image={highResCube} alt="HyperCube with 64 different colors."
+                    caption="The cube with PWM for increasing the color space."/>
+    <CaptionedImage image={controller} alt="Cube controller."
+                    caption="The 3D-printed controller."/>
+</div>
+
+
+<br/>
+# Links
+- [Project on GitHub](https://github.com/tobias-weber/ledcube)

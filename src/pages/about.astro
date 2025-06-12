@@ -3,10 +3,15 @@ import Layout from "../layouts/Layout.astro";
 import PageTitle from "../components/PageTitle.astro";
 import SkillElement from "../components/SkillElement.astro";
 import Location from "../components/Location.astro";
+import SocialLinks from "../components/SocialLinks.astro";
 ---
 
 <Layout title="About - TobWeb">
     <PageTitle>About Me</PageTitle>
+
+    <div class="flex gap-4 mb-8 -mt-4">
+        <SocialLinks/>
+    </div>
 
     <h2 class="text-4xl mb-8 font-bold">My Education</h2>
 
@@ -92,10 +97,10 @@ import Location from "../components/Location.astro";
     <p class="mb-4">
         I consider my key strengths to be the ability to systematically analyze and solve problems, quickly grasp new
         concepts and efficiently learn new skills.
-        I believe that underlying problem-solving abilities are more important than any specific technical skill.
+        I believe that underlying problem-solving abilities are generally more important than any specific technical skill.
     </p>
 
-    <p class="mb-4">
+    <p class="mb-8">
         Nonetheless, the following list provides an overview of the languages and technologies I’ve worked with.
         Some of these I know very well, others I've wrestled with just enough to respect. Either way, I’m always up for
         learning more!
@@ -129,5 +134,6 @@ import Location from "../components/Location.astro";
         <SkillElement icon="spark" title="Apache Spark"/>
         <SkillElement icon="mongodb-dark" darkIcon="mongodb" title="MongoDB"/>
         <SkillElement icon="neo4j" title="Neo4j"/>
+        <SkillElement icon="arduino" title="Arduino"/>
     </div>
 </Layout>

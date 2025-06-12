@@ -1,9 +1,10 @@
 ---
 import {Image} from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import profileImage from '../assets/sample_profile_img.png'
+import profileImage from '../assets/profile_picture.svg'
 import {getCollection} from "astro:content";
 import ProjectCard from "../components/ProjectCard.astro";
+import {CONTACT_EMAIL} from '../utils/constants';
 
 const N_LATEST = 2;
 const FEATURED = ['master-thesis', 'photo-mosaics']; // set to empty array to disable
@@ -19,10 +20,10 @@ const latestProjects = allProjects
 
 <Layout>
 
-    <div class="hero mb-32">
+    <div class="hero mb-16">
         <div class="hero-content flex-col md:flex-row">
             <a href="/about">
-                <Image src={profileImage} alt="Image of the author"
+                <Image src={profileImage} alt="Tobias Weber, the author of this website." loading="eager"
                        class="max-w-56 rounded-full object-cover shadow-2xl hover:scale-105"
                 />
             </a>
@@ -30,13 +31,13 @@ const latestProjects = allProjects
                 <h3 class="text-2xl font-bold">Hello! My name is</h3>
                 <h1 class="text-5xl font-bold">Tobias Weber</h1>
                 <p class="pt-3 pb-6">
-                    I love coding, problem solving, learning and understanding how stuff works.
+                    I love coding, solving complex problems, learning and understanding how stuff works.
                     Having just completed my Master's degree in Computer Science, I’m excited to turn that passion into
                     a career!
                 </p>
                 <a class="btn btn-primary me-4" href="/about">About Me</a>
-                <a class="btn btn-accent" href="mailto:info@tobweb.ch">
-                    Contact Me
+                <a class="btn btn-accent" href={`mailto:${CONTACT_EMAIL}`}>
+                    Get in Touch
                 </a>
             </div>
         </div>
