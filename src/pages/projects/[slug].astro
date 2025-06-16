@@ -5,7 +5,6 @@ import {Image} from 'astro:assets';
 import Layout from "../../layouts/Layout.astro";
 import Prose from "../../components/Prose.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
-import PageTitle from "../../components/PageTitle.astro";
 
 interface Props {
     project: CollectionEntry<'projects'>;
@@ -24,7 +23,7 @@ const {Content} = await render(project);
 const cover = project.data.image.src
 ---
 
-<Layout>
+<Layout title="Projects - TobWeb">
     <div>
         <a href="/projects" class="btn btn-sm mb-8 btn-neutral">Back to Projects</a>
     </div>
