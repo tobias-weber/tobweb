@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Analytics from '@vercel/analytics/astro'
 import Footer from "../components/Footer.astro";
 import DrawerHeader from "../components/DrawerHeader.astro";
 // Props passed to this layout
@@ -26,5 +27,6 @@ const {title = "TobWeb"} = Astro.props;
             </main>
             <Footer/>
         </DrawerHeader>
+        <Analytics />
     </body>
 </html>
