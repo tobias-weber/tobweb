@@ -1,0 +1,74 @@
+---
+title: "Weather Forecast Streaming Data Analysis"
+pubDate: 2024-05-26
+description: "Developing a processing pipeline based on Apache Spark for real-time weather forecast analysis."
+image:
+    src: '/src/assets/projects/weather-forecast/architecture.png'
+    alt: 'The data processing pipeline.'
+tools: ["Python", "Apache Spark", "Hadoop", "AWS"]
+---
+import CaptionedImage from "../../components/CaptionedImage.astro";
+import errorOverTime from '/src/assets/projects/weather-forecast/error-over-time.png';
+import errorDistShort from '/src/assets/projects/weather-forecast/error-dist-short.png';
+import joinsDiagram from '/src/assets/projects/weather-forecast/joins.png';
+
+How accurate are weather forecasts actually and what weather model performs best for different places in Switzerland?
+
+To answer these questions, [Leo Posva](https://github.com/leoposva) and I developed a streaming data analysis pipeline relying on Apache Spark and Hadoop.
+The pipeline allows us to visualize the accuracy of recent weather predictions in real-time in a manner that can easily be scaled up for Big Data.
+The project was completed as part of the fantastic [Data Information Systems](https://dmi.unibas.ch/de/studium/computer-science-informatik/lehrangebot-fs24/15729-lecture-distributed-information-systems/) master lecture.
+
+## Pipeline Architecture
+
+The developed data processing pipeline architecture is shown in the cover image.
+It was deployed on multiple AWS EC2 instances.
+
+### Data Collection
+Data is periodically fetched from the free [Open-Meteo API](https://open-meteo.com/en/docs).
+The processed forecast data
+- comes from 4 different weather models,
+- for 10 locations across Switzerland,
+- makes hourly predictions for up to 7 days into the future
+- and includes the variables *temperature*, *relative humidity*, *surface pressure* and *total cloud cover*.
+
+In addition, we also record the actual measured values for these variables, allowing us to quantify the forecast accuracy.
+
+### Data Processing
+The collected data is continuously streamed into the [Structured Streaming engine of Apache Spark](https://spark.apache.org/docs/latest/streaming/getting-started.html).
+Spark runs on a YARN cluster on top of 3 [Hadoop](https://hadoop.apache.org/) nodes.
+
+After cleaning and mapping the data to a tidy table, the next step is to group forecasts and measurements by their target time.
+This was implemented as an instance of a stream-stream join and required watermarking.
+
+<CaptionedImage image={joinsDiagram} alt="Conceptual alignment of forecast and measurement data."
+                caption="Incoming API responses are appended column-by-column. The highlighted row indicates that further processing is performed row-by-row."/>
+
+A windowed grouped aggregation on the target time is performed. This computes the average
+error per day for each combination of location, model, variable and forecast length:
+- short: forecasts up to 1 day into the future
+- medium: 1-3 days
+- long: 3-7 days
+
+Finally, we add a rescaled version of the errors (97-th percentile is mapped to 100) that makes the different weather variables comparable.
+The results are incrementally written to a PostgreSQL database.
+
+### Data Visualization
+
+We used the Python data visualization library [seaborn](https://seaborn.pydata.org/) to visualize the results from within a Jupyter Notebook.
+Additionally, Jupyter Widgets were used to make the plots interactive.
+
+Using [Voila](https://jupyter-tutorial.readthedocs.io/en/latest/dashboards/voila/index.html) behind a [nginx](https://voila.readthedocs.io/en/stable/deploy.html#running-voila-on-a-private-server) web server,
+the interactive notebook was turned into a standalone application that can be accessed from anywhere over a web browser.
+
+## Results
+
+<CaptionedImage image={errorOverTime} alt="The absolute error over time fore different forecast lengths."
+                caption="The absolute error for the temperature in Basel for different forecast lengths."/>
+
+<CaptionedImage image={errorDistShort} alt="Error distribution for short-term forecasts."
+                caption="The (rescaled) distribution of errors for short-term forecasts (< 24 hours)."/>
+
+
+<br/>
+# Links
+- [Project on GitHub](https://github.com/tobias-weber/weather-forecast-analysis)
