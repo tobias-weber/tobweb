@@ -9,16 +9,16 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.0",
-    "@astrojs/sitemap": "^3.4.1",
-    "@tailwindcss/vite": "^4.1.7",
-    "@vercel/analytics": "^1.5.0",
-    "astro": "^5.8.0",
+    "@astrojs/mdx": "^4.3.12",
+    "@astrojs/sitemap": "^3.6.0",
+    "@tailwindcss/vite": "^4.1.17",
+    "@vercel/analytics": "^1.6.1",
+    "astro": "5.16.4",
     "astro-icon": "^1.1.5",
-    "daisyui": "^5.0.37",
-    "tailwindcss": "^4.1.7"
+    "daisyui": "^5.5.8",
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.16"
+    "@tailwindcss/typography": "^0.5.19"
   }
 }
